@@ -99,3 +99,7 @@ Simplemente abre el archivo **`index.html`** dándole doble clic o arrastrándol
 ## 📝 Nota sobre Analítica Prescriptiva en Tiempo Real
 
 El sistema automatiza un flujo de Machine Learning tradicional aplicando reglas lógicas. Extraído el AQI de ciudades críticas (*Medellín, Bogotá, Cali, México, Shanghai*), se evalúa y clasifica automáticamente. Modificar a nivel de código las variables en  `app.py` permite parametrizar las alertas e ingresar nuevas coordenadas geográficas de interés inmediato.
+
+## 🌎 Realizado por:
+
+> Feibert Alirio Guzmán Pérez
