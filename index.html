@@ -1,0 +1,465 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Análisis Prescriptivo de Calidad del Aire | Landing Page</title>
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;800&family=Inter:wght@400;500;700&display=swap" rel="stylesheet">
+    <!-- FontAwesome for icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <style>
+        :root {
+            --primary: #00f2fe;
+            --secondary: #4facfe;
+            --dark-bg: #0b0c10;
+            --dark-card: rgba(31, 40, 51, 0.6);
+            --text-main: #ffffff;
+            --text-muted: #c5c6c7;
+            --glass-border: rgba(255, 255, 255, 0.1);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: var(--dark-bg);
+            color: var(--text-main);
+            overflow-x: hidden;
+            line-height: 1.6;
+        }
+
+        /* Ambient Background Animations */
+        .ambient-bg {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            overflow: hidden;
+            z-index: -1;
+            background: #0f172a;
+        }
+
+        .blob {
+            position: absolute;
+            border-radius: 50%;
+            filter: blur(80px);
+            opacity: 0.6;
+            animation: float 20s infinite alternate;
+        }
+
+        .blob-1 {
+            top: -10%;
+            left: -10%;
+            width: 500px;
+            height: 500px;
+            background: rgba(79, 172, 254, 0.4);
+            animation-delay: 0s;
+        }
+
+        .blob-2 {
+            bottom: -20%;
+            right: -10%;
+            width: 600px;
+            height: 600px;
+            background: rgba(0, 242, 254, 0.3);
+            animation-duration: 25s;
+        }
+
+        .blob-3 {
+            top: 40%;
+            left: 60%;
+            width: 400px;
+            height: 400px;
+            background: rgba(138, 43, 226, 0.3);
+            animation-duration: 30s;
+        }
+
+        @keyframes float {
+            0% { transform: translate(0, 0) scale(1); }
+            50% { transform: translate(100px, 50px) scale(1.1); }
+            100% { transform: translate(-50px, 100px) scale(0.9); }
+        }
+
+        /* Container */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+
+        /* Header / Hero */
+        header {
+            min-height: 80vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            position: relative;
+            padding: 4rem 0;
+        }
+
+        .badge {
+            display: inline-block;
+            padding: 0.5rem 1.5rem;
+            background: rgba(79, 172, 254, 0.1);
+            border: 1px solid var(--primary);
+            border-radius: 50px;
+            color: var(--primary);
+            font-size: 0.9rem;
+            font-weight: 600;
+            letter-spacing: 1px;
+            margin-bottom: 2rem;
+            text-transform: uppercase;
+        }
+
+        h1 {
+            font-family: 'Outfit', sans-serif;
+            font-size: clamp(3rem, 5vw, 5rem);
+            font-weight: 800;
+            line-height: 1.1;
+            margin-bottom: 1.5rem;
+            background: linear-gradient(135deg, #fff 0%, #c5c6c7 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        h1 span {
+            background: linear-gradient(to right, var(--primary), var(--secondary));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .subtitle {
+            font-size: 1.25rem;
+            color: var(--text-muted);
+            max-width: 800px;
+            margin: 0 auto 3rem auto;
+        }
+
+        .cta-buttons {
+            display: flex;
+            gap: 1.5rem;
+            justify-content: center;
+        }
+
+        .btn {
+            padding: 1rem 2.5rem;
+            border-radius: 50px;
+            font-family: 'Outfit', sans-serif;
+            font-weight: 600;
+            font-size: 1.1rem;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .btn-primary {
+            background: linear-gradient(to right, var(--secondary), var(--primary));
+            color: #000;
+            box-shadow: 0 10px 20px rgba(0, 242, 254, 0.2);
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 15px 25px rgba(0, 242, 254, 0.4);
+        }
+
+        .btn-outline {
+            background: transparent;
+            color: var(--text-main);
+            border: 1px solid var(--glass-border);
+            backdrop-filter: blur(10px);
+        }
+
+        .btn-outline:hover {
+            background: rgba(255, 255, 255, 0.1);
+            transform: translateY(-3px);
+        }
+
+        /* Glassmorphism Sections */
+        .glass-section {
+            background: var(--dark-card);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border: 1px solid var(--glass-border);
+            border-radius: 24px;
+            padding: 4rem;
+            margin-bottom: 4rem;
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .glass-section:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 30px 60px -12px rgba(0, 242, 254, 0.15);
+        }
+
+        .section-title {
+            font-family: 'Outfit', sans-serif;
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .section-title i {
+            color: var(--primary);
+        }
+
+        /* Fichas de Paso (Step Cards) */
+        .steps-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .step-card {
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid var(--glass-border);
+            border-radius: 16px;
+            padding: 2.5rem 2rem;
+            position: relative;
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            cursor: default;
+        }
+
+        .step-card:hover {
+            background: rgba(255, 255, 255, 0.08);
+            transform: translateY(-10px) scale(1.02);
+            border-color: rgba(0, 242, 254, 0.3);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.3);
+        }
+
+        .step-number {
+            position: absolute;
+            top: -20px;
+            right: 20px;
+            font-family: 'Outfit', sans-serif;
+            font-size: 4rem;
+            font-weight: 800;
+            color: rgba(255, 255, 255, 0.05);
+            line-height: 1;
+            transition: color 0.3s ease;
+        }
+
+        .step-card:hover .step-number {
+            color: rgba(0, 242, 254, 0.15);
+        }
+
+        .step-icon {
+            font-size: 2rem;
+            color: var(--primary);
+            margin-bottom: 1.5rem;
+            display: inline-block;
+            padding: 1rem;
+            background: rgba(0, 242, 254, 0.1);
+            border-radius: 12px;
+        }
+
+        .step-title {
+            font-family: 'Outfit', sans-serif;
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+            color: var(--text-main);
+        }
+
+        .step-desc {
+            color: var(--text-muted);
+            font-size: 0.95rem;
+        }
+
+        /* Features List */
+        .feature-list {
+            list-style: none;
+            margin-top: 1rem;
+        }
+
+        .feature-list li {
+            margin-bottom: 0.8rem;
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            color: var(--text-muted);
+        }
+
+        .feature-list i {
+            color: var(--secondary);
+        }
+
+        /* Footer */
+        footer {
+            text-align: center;
+            padding: 3rem 0;
+            border-top: 1px solid var(--glass-border);
+            margin-top: 4rem;
+        }
+
+        .footer-content {
+            color: var(--text-muted);
+            font-size: 0.9rem;
+        }
+
+        .social-links {
+            margin-top: 1.5rem;
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+        }
+
+        .social-links a {
+            color: var(--text-muted);
+            font-size: 1.2rem;
+            transition: color 0.3s ease;
+        }
+
+        .social-links a:hover {
+            color: var(--primary);
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .glass-section {
+                padding: 2rem;
+            }
+            .cta-buttons {
+                flex-direction: column;
+            }
+            .steps-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Ambient Background -->
+    <div class="ambient-bg">
+        <div class="blob blob-1"></div>
+        <div class="blob blob-2"></div>
+        <div class="blob blob-3"></div>
+    </div>
+
+    <div class="container">
+        <!-- Hero Section -->
+        <header>
+            <div class="badge">Inteligencia de Datos Aplicada</div>
+            <h1>Análisis Prescriptivo de <br><span>Calidad del Aire</span></h1>
+            <p class="subtitle">Descubre cómo transformamos datos en tiempo real de la API de WAQI en decisiones prescriptivas para proteger la salud pública a nivel mundial.</p>
+            
+            <div class="cta-buttons">
+                <a href="#fichas" class="btn btn-primary"><i class="fa-solid fa-arrow-down"></i> Explorar Proyecto</a>
+                <a href="https://github.com/FeibertGuzman/Seguimiento_2.git" target="_blank" class="btn btn-outline"><i class="fa-brands fa-github"></i> Ver Código Fuente</a>
+            </div>
+        </header>
+
+        <!-- Intro Section -->
+        <section class="glass-section">
+            <h2 class="section-title"><i class="fa-solid fa-globe"></i> El Desafío Global</h2>
+            <p style="color: var(--text-muted); font-size: 1.1rem; line-height: 1.8;">
+                La contaminación del aire es uno de los principales problemas ambientales a nivel mundial. 
+                El índice <strong>AQI (Air Quality Index)</strong> actúa como el termómetro de nuestra atmósfera, 
+                midiendo contaminantes críticos como el PM2.5, PM10, NO2, y Ozono. 
+                <br><br>
+                Este proyecto no solo visualiza el problema, va un paso más allá utilizando lógica prescriptiva 
+                para brindar recomendaciones accionables basadas en la calidad del aire de metrópolis globales como Medellín, Bogotá, Cali, México y Shanghai.
+            </p>
+        </section>
+
+        <!-- Fichas de Paso -->
+        <section id="fichas">
+            <div style="text-align: center; margin-bottom: 2rem;">
+                <h2 style="font-family: 'Outfit', sans-serif; font-size: 3rem; margin-bottom: 1rem;">Fichas de Paso</h2>
+                <p style="color: var(--text-muted);">El proceso técnico construido dentro del análisis de datos.</p>
+            </div>
+
+            <div class="steps-grid">
+                <!-- Paso 1 -->
+                <div class="step-card">
+                    <span class="step-number">01</span>
+                    <div class="step-icon"><i class="fa-solid fa-cloud-arrow-down"></i></div>
+                    <h3 class="step-title">Conexión a la API (WAQI)</h3>
+                    <p class="step-desc">Utilizando el servicio en tiempo real del World Air Quality Index, nos conectamos vía peticiones HTTP seguras para obtener los niveles de contaminación actuales de ciudades específicas.</p>
+                </div>
+
+                <!-- Paso 2 -->
+                <div class="step-card">
+                    <span class="step-number">02</span>
+                    <div class="step-icon"><i class="fa-solid fa-table"></i></div>
+                    <h3 class="step-title">Creación de DataFrames</h3>
+                    <p class="step-desc">Se procesa el archivo JSON devuelto por la API. Transformamos arreglos complejos de diccionarios en estructuras tabulares altamente eficientes utilizando la librería Pandas.</p>
+                </div>
+
+                <!-- Paso 3 -->
+                <div class="step-card">
+                    <span class="step-number">03</span>
+                    <div class="step-icon"><i class="fa-solid fa-filter"></i></div>
+                    <h3 class="step-title">Clasificación del AQI</h3>
+                    <p class="step-desc">Mediante reglas lógicas, convertimos el valor numérico en categorías estandarizadas globales:</p>
+                    <ul class="feature-list">
+                        <li><i class="fa-solid fa-check"></i> Buena (0-50)</li>
+                        <li><i class="fa-solid fa-exclamation"></i> Moderada (51-100)</li>
+                        <li><i class="fa-solid fa-skull"></i> Muy Dañina (+200)</li>
+                    </ul>
+                </div>
+
+                <!-- Paso 4 -->
+                <div class="step-card">
+                    <span class="step-number">04</span>
+                    <div class="step-icon"><i class="fa-solid fa-brain"></i></div>
+                    <h3 class="step-title">Modelo Prescriptivo</h3>
+                    <p class="step-desc">Donde ocurre la magia de la Inteligencia de Negocios. El sistema asocia la alerta ambiental actual con una acción recomendada automatizada para entidades de salud pública o usuarios.</p>
+                </div>
+
+                <!-- Paso 5 -->
+                <div class="step-card">
+                    <span class="step-number">05</span>
+                    <div class="step-icon"><i class="fa-solid fa-chart-pie"></i></div>
+                    <h3 class="step-title">Visualización Dinámica</h3>
+                    <p class="step-desc">El análisis culmina renderizando interfaces gráficas impactantes, mapas térmicos en vivo, y gráficos de barras comparativos para proveer contexto inmediato al tomador de decisiones.</p>
+                </div>
+                
+                <!-- Paso 6 -->
+                <div class="step-card">
+                    <span class="step-number">06</span>
+                    <div class="step-icon"><i class="fa-solid fa-rocket"></i></div>
+                    <h3 class="step-title">Despliegue Interactivo</h3>
+                    <p class="step-desc">Todo el ecosistema se unifica e implementa en una aplicación Web a través de Streamlit, entregando analítica en un producto final al usuario.</p>
+                </div>
+            </div>
+        </section>
+        
+        <div style="text-align: center; margin-top: 5rem;">
+             <a href="#" class="btn btn-primary" onclick="alert('Iniciando la app de Streamlit...')">
+                 <i class="fa-solid fa-play"></i> Iniciar Web App (Streamlit)
+             </a>
+        </div>
+
+        <!-- Footer -->
+        <footer>
+            <div class="footer-content">
+                <p>&copy; 2026 Análisis de Calidad del Aire. Desarrollado por Feibert Guzmán.</p>
+                <div class="social-links">
+                    <a href="https://github.com/FeibertGuzman"><i class="fa-brands fa-github"></i></a>
+                    <a href="#"><i class="fa-brands fa-linkedin"></i></a>
+                </div>
+            </div>
+        </footer>
+    </div>
+</body>
+</html>
